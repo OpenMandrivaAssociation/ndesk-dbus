@@ -1,6 +1,6 @@
 %define name ndesk-dbus
 %define version 0.5.2
-%define release %mkrel 1
+%define release %mkrel 2
 %define oname dbus-sharp
 %define pkgname ndesk-dbus-1.0
 
@@ -40,10 +40,11 @@ install -m 644 -D %pkgname.pc.in %buildroot%_datadir/pkgconfig/%pkgname.pc
 perl -pi -e "s^\@prefix\@^%_prefix^" %buildroot%_datadir/pkgconfig/%pkgname.pc
 install tools/dbus-monitor.exe %buildroot/%_prefix/lib/mono/%pkgname
 install -d -m 755 %buildroot%_bindir
-cat > %buildroot%_bindir/dbus-monitor << EOF
+cat > %buildroot%_prefix/lib/mono/%pkgname/dbus-monitor << EOF
 #!/bin/sh
 mono --debug %_prefix/lib/mono/%pkgname/dbus-monitor.exe \$@
 EOF
+chmod 755 %buildroot%_prefix/lib/mono/%pkgname/dbus-monitor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -51,7 +52,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc README COPYING examples
-%attr(755,root,root) %_bindir/dbus-monitor
 %_prefix/lib/mono/%pkgname
 %_prefix/lib/mono/gac/NDesk.DBus/
 %_datadir/pkgconfig/%pkgname.pc
