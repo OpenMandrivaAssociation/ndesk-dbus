@@ -1,14 +1,13 @@
 %define name ndesk-dbus
-%define version 0.5.2
-%define release %mkrel 2
-%define oname dbus-sharp
+%define version 0.6.0
+%define release %mkrel 1
 %define pkgname ndesk-dbus-1.0
 
 Summary: Managed D-Bus implementation
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://www.ndesk.org/archive/dbus-sharp/%{oname}-%{version}.tar.bz2
+Source0: http://www.ndesk.org/archive/dbus-sharp/%{name}-%{version}.tar.gz
 License: MIT
 Group: System/Libraries
 Url: http://www.ndesk.org/DBusSharp
@@ -26,25 +25,15 @@ applications interface with the system event bus as well as allowing
 them to talk to one another in a peer-to-peer configuration.
 
 %prep
-%setup -q -n %oname-%version
+%setup -q -n %name-%version
 
 %build
+./configure --prefix=%_prefix
 %make
-cd examples
-make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-gacutil -i -check_refs -package %pkgname src/NDesk.DBus.dll -root %buildroot/%_prefix/lib
-install -m 644 -D %pkgname.pc.in %buildroot%_datadir/pkgconfig/%pkgname.pc
-perl -pi -e "s^\@prefix\@^%_prefix^" %buildroot%_datadir/pkgconfig/%pkgname.pc
-install tools/dbus-monitor.exe %buildroot/%_prefix/lib/mono/%pkgname
-install -d -m 755 %buildroot%_bindir
-cat > %buildroot%_prefix/lib/mono/%pkgname/dbus-monitor << EOF
-#!/bin/sh
-mono --debug %_prefix/lib/mono/%pkgname/dbus-monitor.exe \$@
-EOF
-chmod 755 %buildroot%_prefix/lib/mono/%pkgname/dbus-monitor
+%makeinstall_std pkgconfigdir=%_datadir/pkgconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
