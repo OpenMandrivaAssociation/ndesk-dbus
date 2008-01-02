@@ -11,6 +11,7 @@ Source0: http://www.ndesk.org/archive/dbus-sharp/%{name}-%{version}.tar.gz
 License: MIT
 Group: System/Libraries
 Url: http://www.ndesk.org/DBusSharp
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: mono-devel
 BuildArch: noarch
 
