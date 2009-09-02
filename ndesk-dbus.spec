@@ -1,6 +1,6 @@
 %define name ndesk-dbus
 %define version 0.6.1a
-%define release %mkrel 3
+%define release %mkrel 4
 %define pkgname ndesk-dbus-1.0
 
 Summary: Managed D-Bus implementation
