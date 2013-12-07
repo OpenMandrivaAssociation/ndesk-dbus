@@ -3,7 +3,7 @@
 Summary:	Managed D-Bus implementation
 Name:		ndesk-dbus
 Version:	0.6.1a
-Release:	10
+Release:	11
 License:	MIT
 Group:		System/Libraries
 Url:		http://www.ndesk.org/DBusSharp
