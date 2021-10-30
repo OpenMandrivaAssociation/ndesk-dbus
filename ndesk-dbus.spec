@@ -3,7 +3,7 @@
 Summary:	Managed D-Bus implementation
 Name:		ndesk-dbus
 Version:	0.6.1a
-Release:	21
+Release:	22
 License:	MIT
 Group:		System/Libraries
 Url:		http://www.ndesk.org/DBusSharp
@@ -39,10 +39,10 @@ them to talk to one another in a peer-to-peer configuration.
 
 %build
 ./configure --prefix=%{_prefix}
-%make
+%make_build
 
 %install
-%makeinstall_std pkgconfigdir=%{_datadir}/pkgconfig
+%make_install pkgconfigdir=%{_datadir}/pkgconfig
 
 %files
 %doc README COPYING
