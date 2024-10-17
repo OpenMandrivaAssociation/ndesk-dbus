@@ -6,7 +6,7 @@ Version:	0.6.1a
 Release:	22
 License:	MIT
 Group:		System/Libraries
-Url:		http://www.ndesk.org/DBusSharp
+Url:		https://www.ndesk.org/DBusSharp
 Source0:	http://www.ndesk.org/archive/dbus-sharp/%{name}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	pkgconfig(mono)
